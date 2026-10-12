@@ -1,0 +1,43 @@
+{
+  "tools": [
+    {
+      "id": 1,
+      "name": "ChatGPT Plus",
+      "category": "writing",
+      "pricing": "Freemium",
+      "desc": "Advanced reasoning, custom GPTs, and multi-modal capabilities.",
+      "link": "https://openai.com",
+      "clicks": 0
+    },
+    {
+      "id": 2,
+      "name": "Claude 3.5 Sonnet",
+      "category": "writing",
+      "pricing": "Freemium",
+      "desc": "Industry-leading coding assistant with Artifacts and nuance.",
+      "link": "https://anthropic.com",
+      "clicks": 0
+    },
+    {
+      "id": 3,
+      "name": "Midjourney v6",
+      "category": "productivity",
+      "pricing": "Paid",
+      "desc": "The premier AI image generator for hyper-realistic visuals.",
+      "link": "https://midjourney.com",
+      "clicks": 0
+    }
+  ],
+  "reviews": [
+    {
+      "name": "Alex M.",
+      "comment": "AIToolstack helped me find the perfect AI writing assistant!",
+      "rating": 5
+    },
+    {
+      "name": "Sarah K.",
+      "comment": "Super clean interface and accurate reviews.",
+      "rating": 4
+    }
+  ]
+}

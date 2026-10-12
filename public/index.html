@@ -1,0 +1,341 @@
+﻿<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIToolstack - Ultimate AI Directory & Ecosystem</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased selection:bg-sky-500 selection:text-white">
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-600 to-cyan-400 flex items-center justify-center text-white font-bold text-xl shadow-md">
+                    <i class="fa-solid fa-layer-group"></i>
+                </div>
+                <span class="text-2xl font-black tracking-tight text-gray-900">AITool<span class="text-sky-600">stack</span></span>
+            </div>
+            <div class="flex items-center space-x-3">
+                <button onclick="openQuizModal()" class="hidden sm:inline-flex items-center px-4 py-2 rounded-xl bg-sky-50 text-sky-600 font-semibold text-sm hover:bg-sky-100 transition">
+                    <i class="fa-solid fa-wand-magic-sparkles mr-2"></i> AI Matcher Quiz
+                </button>
+                <button onclick="openAdminModal()" class="px-4 py-2 rounded-xl bg-slate-900 text-white font-semibold text-sm hover:bg-slate-800 transition shadow-md">
+                    <i class="fa-solid fa-lock mr-1.5"></i> Admin
+                </button>
+            </div>
+        </div>
+    </header>
+    <section class="bg-gradient-to-r from-slate-900 via-sky-950 to-slate-900 text-white py-20 lg:py-28 px-4 text-center relative overflow-hidden">
+        <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#0ea5e9_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
+        <div class="max-w-4xl mx-auto space-y-6 relative z-10">
+            <span class="bg-sky-500/10 border border-sky-500/20 text-sky-400 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider">
+                ✨ Ultimate Edition 2026
+            </span>
+            <h1 class="text-4xl sm:text-6xl font-black tracking-tight leading-tight">
+                Discover, Compare & Master the <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-cyan-300">Best AI Tools</span>
+            </h1>
+            <p class="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto">
+                The ultimate AI directory equipped with dynamic pricing calculators, smart quizzes, and verified affiliate deals.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4 pt-4">
+                <a href="#directory" class="px-8 py-3.5 rounded-xl bg-sky-500 text-white font-semibold shadow-lg shadow-sky-500/25 hover:bg-sky-400 transition">Explore Directory</a>
+                <button onclick="openCalculatorModal()" class="px-8 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold backdrop-blur-sm border border-white/10 transition">
+                    <i class="fa-solid fa-calculator mr-2 text-cyan-400"></i> AI Stack Calculator
+                </button>
+            </div>
+        </div>
+    </section>
+    <main id="directory" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
+                <button onclick="filterCategory(\x27all\x27)" id="btn-all" class="px-4 py-2 rounded-xl text-sm font-semibold bg-sky-500 text-white transition shadow-sm">All Tools</button>
+                <button onclick="filterCategory(\x27writing\x27)" id="btn-writing" class="px-4 py-2 rounded-xl text-sm font-medium bg-gray-100 text-gray-600 hover:bg-gray-200 transition">AI Writing</button>
+                <button onclick="filterCategory(\x27productivity\x27)" id="btn-productivity" class="px-4 py-2 rounded-xl text-sm font-medium bg-gray-100 text-gray-600 hover:bg-gray-200 transition">Productivity</button>
+                <button onclick="filterCategory(\x27automation\x27)" id="btn-automation" class="px-4 py-2 rounded-xl text-sm font-medium bg-gray-100 text-gray-600 hover:bg-gray-200 transition">Automation</button>
+            </div>
+            <div class="relative w-full md:w-72">
+                <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </span>
+                <input type="text" id="searchInput" oninput="handleSearch()" placeholder="Search AI tools..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-sky-500 text-sm">
+            </div>
+        </div>
+        <div>
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-bold text-gray-900">Featured AI Software Stack</h2>
+                <span id="toolCount" class="text-xs font-semibold text-gray-400 bg-gray-100 px-3 py-1 rounded-full"></span>
+            </div>
+            <div id="toolsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <div class="lg:col-span-8 bg-white rounded-2xl p-8 shadow-sm border border-gray-100 space-y-6">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-xl font-bold text-gray-900">Verified Community Reviews</h3>
+                    <button onclick="openReviewModal()" class="px-4 py-2 bg-sky-50 text-sky-600 font-semibold text-xs rounded-xl hover:bg-sky-100 transition"><i class="fa-solid fa-plus mr-1"></i> Add Review</button>
+                </div>
+                <div id="reviewsList" class="space-y-4"></div>
+            </div>
+            <div class="lg:col-span-4 bg-slate-900 text-white rounded-2xl p-8 shadow-sm space-y-6">
+                <span class="text-sky-400 font-semibold text-xs uppercase tracking-wider">Exclusive Deals</span>
+                <h3 class="text-2xl font-bold">Deal of the Week</h3>
+                <p class="text-sm text-gray-300">Get an exclusive 20% lifetime discount on verified AI productivity suites through our partner links.</p>
+                <div class="p-4 rounded-xl bg-slate-800 border border-slate-700 space-y-2">
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold text-sm">Claude 3.5 Pro Deal</span>
+                        <span class="text-xs bg-emerald-500/20 text-emerald-300 px-2.5 py-0.5 rounded-full font-semibold">Active</span>
+                    </div>
+                    <p class="text-xs text-gray-400">Save up to \$60/year with our verified referral partnership.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-slate-950 text-gray-400 py-12 border-t border-slate-800 mt-20 text-center text-xs">
+        <p>&copy; 2026 AIToolstack.com. Ultimate AI Directory & Affiliate Ecosystem. All rights reserved.</p>
+    </footer>
+    <div id="adminModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-8 shadow-2xl relative space-y-6">
+            <button onclick="closeAdminModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 p-2"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <h3 class="text-xl font-bold text-gray-900">Admin: Add New AI Tool</h3>
+            <form onsubmit="handleAdminSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Tool Name</label>
+                    <input type="text" id="toolName" required class="w-full px-4 py-2 rounded-xl border border-gray-200 text-sm">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 mb-1">Category</label>
+                        <select id="toolCategory" class="w-full px-4 py-2 rounded-xl border border-gray-200 text-sm">
+                            <option value="writing">AI Writing</option>
+                            <option value="productivity">Productivity</option>
+                            <option value="automation">Automation</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 mb-1">Pricing Type</label>
+                        <input type="text" id="toolPricing" placeholder="Freemium / Paid" required class="w-full px-4 py-2 rounded-xl border border-gray-200 text-sm">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 mb-1">Monthly Price (\$)</label>
+                        <input type="number" id="toolPriceVal" value="20" required class="w-full px-4 py-2 rounded-xl border border-gray-200 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 mb-1">Badge Tag</label>
+                        <input type="text" id="toolBadge" placeholder="Most Popular" class="w-full px-4 py-2 rounded-xl border border-gray-200 text-sm">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Description</label>
+                    <textarea id="toolDesc" rows="2" required class="w-full px-4 py-2 rounded-xl border border-gray-200 text-sm"></textarea>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Affiliate Link URL</label>
+                    <input type="url" id="toolLink" placeholder="https://..." required class="w-full px-4 py-2 rounded-xl border border-gray-200 text-sm">
+                </div>
+                <button type="submit" class="w-full py-3 rounded-xl bg-sky-500 text-white font-semibold text-sm hover:bg-sky-400 transition">Save to Database</button>
+            </form>
+        </div>
+    </div>
+    <div id="quizModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-8 shadow-2xl relative space-y-6">
+            <button onclick="closeQuizModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 p-2"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <div class="text-center space-y-1">
+                <span class="text-sky-600 font-semibold text-xs uppercase">AI Matcher Assistant</span>
+                <h3 class="text-xl font-bold text-gray-900">What is your primary goal?</h3>
+            </div>
+            <div class="space-y-3">
+                <button onclick="selectQuiz(\x27writing\x27, \x27ChatGPT Plus & Claude 3.5 Sonnet\x27)" class="w-full p-3 rounded-xl border border-gray-200 text-left text-sm font-medium hover:border-sky-500 hover:bg-sky-50 transition">✍️ Content Creation & Writing</button>
+                <button onclick="selectQuiz(\x27productivity\x27, \x27Midjourney v6 & Advanced Tools\x27)" class="w-full p-3 rounded-xl border border-gray-200 text-left text-sm font-medium hover:border-sky-500 hover:bg-sky-50 transition">🎨 Visual Arts & Productivity</button>
+                <button onclick="selectQuiz(\x27automation\x27, \x27Zapier Central & Automations\x27)" class="w-full p-3 rounded-xl border border-gray-200 text-left text-sm font-medium hover:border-sky-500 hover:bg-sky-50 transition">⚡ Workflow Automation</button>
+            </div>
+            <div id="quizResult" class="hidden p-4 rounded-xl bg-sky-50 text-sky-900 text-xs font-medium text-center"></div>
+        </div>
+    </div>
+    <div id="calculatorModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-8 shadow-2xl relative space-y-6">
+            <button onclick="closeCalculatorModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 p-2"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <div class="space-y-1">
+                <h3 class="text-xl font-bold text-gray-900">AI Stack Cost Calculator</h3>
+                <p class="text-xs text-gray-500">Estimate your monthly AI software expenditure.</p>
+            </div>
+            <div id="calculatorList" class="space-y-3 max-h-60 overflow-y-auto pr-2"></div>
+            <div class="p-4 rounded-xl bg-slate-900 text-white flex items-center justify-between">
+                <span class="text-sm font-medium">Estimated Monthly Total:</span>
+                <span id="totalCost" class="text-xl font-bold text-sky-400">\$0 / mo</span>
+            </div>
+        </div>
+    </div>
+    <div id="reviewModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-8 shadow-2xl relative space-y-4">
+            <button onclick="closeReviewModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 p-2"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <h3 class="text-xl font-bold text-gray-900">Add Verified Review</h3>
+            <form onsubmit="handleReviewSubmit(event)" class="space-y-4">
+                <input type="text" id="revName" placeholder="Your Name" required class="w-full px-4 py-2 rounded-xl border border-gray-200 text-sm">
+                <textarea id="revComment" placeholder="Your Review" required rows="3" class="w-full px-4 py-2 rounded-xl border border-gray-200 text-sm"></textarea>
+                <button type="submit" class="w-full py-3 rounded-xl bg-sky-500 text-white font-semibold text-sm">Submit Review</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        let allTools = [];
+        let currentCategory = \x27all\x27;
+
+        async function loadData() {
+            const res = await fetch(\x27/api/data\x27);
+            const data = await res.json();
+            allTools = data.tools;
+            renderTools(allTools);
+            renderReviews(data.reviews);
+            renderCalculator(allTools);
+        }
+
+        function renderTools(tools) {
+            const grid = document.getElementById(\x27toolsGrid\x27);
+            document.getElementById(\x27toolCount\x27).innerText = `${tools.length} Tools Available`;
+            grid.innerHTML = tools.map(tool => \x60
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col justify-between space-y-4 hover:shadow-md transition">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="font-bold text-lg text-gray-900">\${tool.name}</span>
+                            <span class="text-xs px-2.5 py-1 rounded-full bg-sky-50 text-sky-600 font-semibold">${tool.pricing} ($\${tool.priceVal}/mo)</span>
+                        </div>
+                        <span class="inline-block text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-600 px-2 py-0.5 rounded-md mb-2">\${tool.badge}</span>
+                        <p class="text-xs text-gray-600 line-clamp-2">\${tool.desc}</p>
+                    </div>
+                    <div class="flex items-center justify-between pt-4 border-t border-gray-50">
+                        <span class="text-xs text-gray-400"><i class="fa-solid fa-chart-line mr-1"></i> \${tool.clicks || 0} clicks</span>
+                        <a href="${tool.link}" target="_blank" onclick="trackClick(${tool.id})" class="px-4 py-2 rounded-xl bg-sky-500 text-white font-semibold text-xs hover:bg-sky-400 transition shadow-sm">Explore Tool</a>
+                    </div>
+                </div>
+            \x60).join(\x27\x27);
+        }
+
+        function renderReviews(reviews) {
+            const list = document.getElementById(\x27reviewsList\x27);
+            list.innerHTML = reviews.map(rev => \x60
+                <div class="p-4 rounded-xl bg-gray-50 border border-gray-100 space-y-1">
+                    <div class="flex items-center justify-between">
+                        <span class="font-semibold text-sm text-gray-900">\${rev.name}</span>
+                        <div class="text-amber-400 text-xs">
+                            \${\x27<i class="fa-solid fa-star"></i>\x27.repeat(rev.rating)}
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-600">"\${rev.comment}"</p>
+                </div>
+            \x60).join(\x27\x27);
+        }
+
+        function renderCalculator(tools) {
+            const calcList = document.getElementById(\x27calculatorList\x27);
+            calcList.innerHTML = tools.map(tool => \x60
+                <label class="flex items-center justify-between p-3 rounded-xl border border-gray-100 hover:bg-gray-50 cursor-pointer">
+                    <div class="flex items-center space-x-3">
+                        <input type="checkbox" value="\${tool.priceVal}" onchange="calculateTotal()" class="calc-checkbox w-4 h-4 text-sky-600 rounded focus:ring-sky-500">
+                        <span class="text-sm font-medium text-gray-800">${tool.name}</span>                     </div>                     <span class="text-xs font-bold text-sky-600">$\${tool.priceVal}/mo</span>
+                </label>
+            \x60).join(\x27\x27);
+        }
+
+        function calculateTotal() {
+            const checkboxes = document.querySelectorAll(\x27.calc-checkbox:checked\x27);
+            let total = 0;
+            checkboxes.forEach(cb => total += parseFloat(cb.value));
+            document.getElementById(\x27totalCost\x27).innerText = `$${total} / mo`;
+        }
+
+        function filterCategory(cat) {
+            currentCategory = cat;
+            [\x27all\x27, \x27writing\x27, \x27productivity\x27, \x27automation\x27].forEach(c => {
+                const btn = document.getElementById(\x60btn-\${c}\x60);
+                if(btn) {
+                    btn.className = c === cat ? \x27px-4 py-2 rounded-xl text-sm font-semibold bg-sky-500 text-white transition shadow-sm\x27 : \x27px-4 py-2 rounded-xl text-sm font-medium bg-gray-100 text-gray-600 hover:bg-gray-200 transition\x27;
+                }
+            });
+            applyFilterAndSearch();
+        }
+
+        function handleSearch() {
+            applyFilterAndSearch();
+        }
+
+        function applyFilterAndSearch() {
+            const query = document.getElementById(\x27searchInput\x27).value.toLowerCase();
+            let filtered = allTools;
+            if(currentCategory !== \x27all\x27) {
+                filtered = filtered.filter(t => t.category === currentCategory);
+            }
+            if(query) {
+                filtered = filtered.filter(t => t.name.toLowerCase().includes(query) || t.desc.toLowerCase().includes(query));
+            }
+            renderTools(filtered);
+        }
+
+        async function trackClick(id) {
+            await fetch(\x60/api/track/\${id}\x60, { method: \x27POST\x27 });
+        }
+
+        function openAdminModal() { document.getElementById(\x27adminModal\x27).classList.remove(\x27hidden\x27); }
+        function closeAdminModal() { document.getElementById(\x27adminModal\x27).classList.add(\x27hidden\x27); }
+        function openQuizModal() { document.getElementById(\x27quizModal\x27).classList.remove(\x27hidden\x27); }
+        function closeQuizModal() { document.getElementById(\x27quizModal\x27).classList.add(\x27hidden\x27); document.getElementById(\x27quizResult\x27).classList.add(\x27hidden\x27); }
+        function openCalculatorModal() { document.getElementById(\x27calculatorModal\x27).classList.remove(\x27hidden\x27); }
+        function closeCalculatorModal() { document.getElementById(\x27calculatorModal\x27).classList.add(\x27hidden\x27); }
+        function openReviewModal() { document.getElementById(\x27reviewModal\x27).classList.remove(\x27hidden\x27); }
+        function closeReviewModal() { document.getElementById(\x27reviewModal\x27).classList.add(\x27hidden\x27); }
+
+        function selectQuiz(cat, recommendation) {
+            const res = document.getElementById(\x27quizResult\x27);
+            res.innerHTML = \x60Recommended Tool for your goal:<br><span class="text-sky-600 font-bold text-sm">\${recommendation}</span>\x60;
+            res.classList.remove(\x27hidden\x27);
+        }
+
+        async function handleAdminSubmit(e) {
+            e.preventDefault();
+            const body = {
+                name: document.getElementById(\x27toolName\x27).value,
+                category: document.getElementById(\x27toolCategory\x27).value,
+                pricing: document.getElementById(\x27toolPricing\x27).value,
+                priceVal: document.getElementById(\x27toolPriceVal\x27).value,
+                badge: document.getElementById(\x27toolBadge\x27).value,
+                desc: document.getElementById(\x27toolDesc\x27).value,
+                link: document.getElementById(\x27toolLink\x27).value
+            };
+            const res = await fetch(\x27/api/tools\x27, {
+                method: \x27POST\x27,
+                headers: { \x27Content-Type\x27: \x27application/json\x27 },
+                body: JSON.stringify(body)
+            });
+            if(res.ok) {
+                alert(\x27Tool added successfully to database!\x27);
+                closeAdminModal();
+                loadData();
+                e.target.reset();
+            }
+        }
+
+        async function handleReviewSubmit(e) {
+            e.preventDefault();
+            const body = {
+                name: document.getElementById(\x27revName\x27).value,
+                comment: document.getElementById(\x27revComment\x27).value,
+                rating: 5
+            };
+            const res = await fetch(\x27/api/reviews\x27, {
+                method: \x27POST\x27,
+                headers: { \x27Content-Type\x27: \x27application/json\x27 },
+                body: JSON.stringify(body)
+            });
+            if(res.ok) {
+                alert(\x27Review added successfully!\x27);
+                closeReviewModal();
+                loadData();
+                e.target.reset();
+            }
+        }
+
+        loadData();
+    </script>
+</body>
+</html>
